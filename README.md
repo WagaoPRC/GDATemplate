@@ -1,2 +1,2 @@
 # GDATemplate
-GDA Template using EF Automapper
+GDA Template using Entity Framework, Automapper, BaseRepository
