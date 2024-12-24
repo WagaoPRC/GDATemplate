@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+	  <ImplicitUsings>enable</ImplicitUsings>
+
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Autofac" Version="6.5.0" />
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+		<PackageReference Include="Azure.Storage.Blobs" Version="12.14.1" />
+		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+		<PackageReference Include="AutoMapper" Version="12.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\$(MSBuildProjectName.Replace('.Application', '')).Data\$(MSBuildProjectName.Replace('.Application', '')).Data.csproj" />
+	  <ProjectReference Include="..\$(MSBuildProjectName.Replace('.Application', '')).Domain\$(MSBuildProjectName.Replace('.Application', '')).Domain.csproj" />
+	</ItemGroup>
+
+</Project>

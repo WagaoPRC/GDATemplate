@@ -1,0 +1,15 @@
+job:
+  enviar_email: ["esaraiva@sp.gov.br", "guilhermesantos@sp.gov.br", "mwsilveira@sp.gov.br", "marcelo.alonso@sp.gov.br", "alexandre.gomes@apoioprodesp.sp.gov.br"] 
+  
+solicitante:
+  nome: "bolsa-povo"
+  sobrenome: "DevSecOps"
+
+homologacao:
+  pre_aprovado: true
+  restricao_horario_inicio: "00:00"
+  restricao_horario_fim: "23:59"
+
+producao:
+  restricao_horario_inicio: "00:00"
+  restricao_horario_fim: "23:59"
