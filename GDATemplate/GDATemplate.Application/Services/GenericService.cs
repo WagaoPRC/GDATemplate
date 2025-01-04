@@ -41,7 +41,7 @@ namespace GDATemplate.Application.Services
                 _demoService.Add(model);
                 _unitOfWork.Commit();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 _unitOfWork.Rollback();
             }

@@ -30,7 +30,6 @@ builder.Services.AddHealthChecks(configuration);
 builder.Services.AddPolicies(configuration);
 builder.Services.AddContexts(configuration);
 builder.Services.AddMapping();
-
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Services.AddControllers();
@@ -41,15 +40,12 @@ builder.Services.AddSwaggerGenNewtonsoftSupport();
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
-        options.Authority = configuration["LoginSP:Authority"];
+        options.Authority = configuration["IDPSP:Discovery"];
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ClockSkew = TimeSpan.FromMinutes(5),
-            RequireSignedTokens = true,
-            RequireExpirationTime = true,
-            ValidateLifetime = true,
             ValidateAudience = false,
-            ValidateIssuer = true,
+            ValidIssuer = configuration["IDPSP:Authority"]
         };
     });
 

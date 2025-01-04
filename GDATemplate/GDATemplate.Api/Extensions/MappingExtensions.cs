@@ -1,12 +1,9 @@
-﻿namespace GDATemplate.Api.Extensions
+﻿namespace GDATemplate.Api.Extensions;
+
+public static class MappingExtensions
 {
-    public static class MappingExtensions
+    public static void AddMapping(this IServiceCollection services)
     {
-        public static void AddMapping(this IServiceCollection services)
-        {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-        }
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
     }
-
-
 }
