@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 IWebHostEnvironment env = builder.Environment;
@@ -33,6 +34,14 @@ builder.Services.AddMapping();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 
 builder.Services.AddControllers();
+
+/// Adds OpenAPI services related to the given document name to the specified
+/// Default is /openapi/v1.json
+
+builder.Services.AddOpenApi(options =>
+ options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi2_0
+);
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGenNewtonsoftSupport();
@@ -54,9 +63,8 @@ builder.Services.AddControllersWithViews(o => { o.Conventions.Add(new AddAuthori
 
 builder.Services.AddSwaggerGen(swagger =>
 {
-    swagger.EnableAnnotations();
     var teste = assembly.FullName.Split(",");
-    swagger.SwaggerDoc("v1", new OpenApiInfo { Title = teste[0] });
+    swagger.SwaggerDoc("v2", new OpenApiInfo { Title = teste[0], Version = "2.0" });
     swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = @"",
@@ -97,10 +105,10 @@ app.UseAuthorization();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    app.MapOpenApi();
+    app.UseSwaggerUI(option =>
     {
-        c.SwaggerEndpoint("v1/swagger.json", "API TEMPLATE");
+        option.SwaggerEndpoint("/openapi/v1.json", "GDA API TEMPLATE");
     });
 }
 
